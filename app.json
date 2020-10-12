@@ -1,0 +1,12 @@
+{
+  "name": "test-premission",
+  "displayName": "test-premission",
+  "expo": {
+    "name": "test-premission",
+    "slug": "expo-template-bare",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
