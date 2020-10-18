@@ -4,7 +4,7 @@ import { Platform, PermissionsAndroid } from "react-native"
 async function _requestAndroidGPSPermission() {
     try {
         await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
-    } catch (err) { }
+    } catch (err) { alert(err) }
 }
 async function _requestIOSGPSPermission() {
     await Geolocation.requestAuthorization('whenInUse');
@@ -12,7 +12,6 @@ async function _requestIOSGPSPermission() {
 
 async function requestGPSPermission(platform=null) {
     if (typeof(platform) !== String) { platform = Platform.OS; }
-    let gpsPermission;
     if (platform === "android") {
         await _requestAndroidGPSPermission();
     } else if (platform === "ios") {
@@ -25,7 +24,7 @@ async function requestGPSPermission(platform=null) {
 async function _requestAndroidCameraPermission() {
     try {
         await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA);
-    } catch (err) { }
+    } catch (err) { alert(err) }
 
 }
 async function _requestIOSCameraPermission() {
@@ -37,16 +36,18 @@ async function requestCameraPermission(platform) {
         await _requestAndroidCameraPermission();
     } else if (platform === "ios") {
         await _requestIOSCameraPermission();
+    } else {
+        alert("error")
     }
 
 }
 
 // check we need to use WiFi permission or not
 
-function requestAllPermission() {
+async function requestAllPermission() {
     let platform = Platform.OS;
-    requestGPSPermission(platform)
-    requestCameraPermission(platform)
+    await requestGPSPermission(platform)
+    await requestCameraPermission(platform)
 }
 
 module.exports = {
