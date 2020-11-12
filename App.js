@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { allPermission, gpsPermission, cameraPermission } from './permission'
-import { checkAll } from './check'
+import { checkAll, product } from './check'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -36,6 +36,11 @@ export default class App extends React.Component {
           onPress={checkAll(this)}
           title="checking all"
         />
+        <Button
+          onPress={product(this)}
+          title="product"
+        />
+        
         <StatusBar style="auto" />
         <Text>{text}</Text>
       </View>
